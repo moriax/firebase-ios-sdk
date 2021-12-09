@@ -86,6 +86,11 @@ static GTMSessionFetcherRetryBlock _retryWhenOffline;
       [fetcherService setRetryEnabled:YES];
       [fetcherService setRetryBlock:_retryWhenOffline];
       [fetcherService setAllowLocalhostRequest:YES];
+      [fetcherService setConfigurationBlock:^(GTMSessionFetcher * _Nonnull fetcher, NSURLSessionConfiguration * _Nonnull configuration) {
+        if (app.options.sharedContainerID != nil) {
+          configuration.sharedContainerIdentifier = app.options.sharedContainerID;
+        }
+      }];
       FIRStorageTokenAuthorizer *authorizer =
           [[FIRStorageTokenAuthorizer alloc] initWithGoogleAppID:app.options.googleAppID
                                                   fetcherService:fetcherService

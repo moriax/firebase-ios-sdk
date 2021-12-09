@@ -43,6 +43,11 @@ NS_SWIFT_NAME(FirebaseOptions)
 @property(nonatomic, copy) NSString *bundleID;
 
 /**
+ * The shared container ID for the application (useful for download/ upload from share extension). 
+ */
+@property(nonatomic, copy) NSString *sharedContainerID;
+
+/**
  * The OAuth2 client ID for iOS application used to authenticate Google users, for example
  * @"12345.apps.googleusercontent.com", used for signing in with Google.
  */

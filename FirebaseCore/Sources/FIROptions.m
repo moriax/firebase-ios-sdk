@@ -31,6 +31,8 @@ NSString *const kFIRStorageBucket = @"STORAGE_BUCKET";
 NSString *const kFIRBundleID = @"BUNDLE_ID";
 // The key to locate the project identifier in the plist file.
 NSString *const kFIRProjectID = @"PROJECT_ID";
+// The key to locate the expected shared container identifier in the plist file.
+NSString *const kFIRSharedContainerID = @"SHARED_CONTAINER_ID";
 
 NSString *const kFIRIsMeasurementEnabled = @"IS_MEASUREMENT_ENABLED";
 NSString *const kFIRIsAnalyticsCollectionEnabled = @"FIREBASE_ANALYTICS_COLLECTION_ENABLED";
@@ -335,6 +337,15 @@ static dispatch_once_t sDefaultOptionsDictionaryOnceToken;
 - (void)setAppGroupID:(NSString *)appGroupID {
   [self checkEditingLocked];
   _appGroupID = [appGroupID copy];
+}
+
+- (NSString *)sharedContainerID {
+  return self.optionsDictionary[kFIRSharedContainerID];
+}
+
+- (void)setSharedContainerID:(NSString *)sharedContainerID {
+  [self checkEditingLocked];
+  _optionsDictionary[kFIRSharedContainerID] = [sharedContainerID copy];
 }
 
 #pragma mark - Equality
